@@ -1,0 +1,98 @@
+h1{
+    font-family: Gineso-condensed, sans-serif !important;
+    color:brown
+}
+
+.vt-logo{
+    display:block;
+    position:relative;
+    /* width:100%; */
+    max-width:40%;
+    min-width:350px;
+    float:left;
+}
+
+.vt-logo-link{
+    display:flex;
+    position:relative;
+    -webkit-box-align: center;
+    align-items:center;
+    max-width:400px;
+    height:64px;
+    overflow:hidden;
+    text-decoration:none !important;
+}
+
+.vt-logo-divider{
+    display: block;
+    position: relative;
+    border-left: 2px solid #e87722;
+    margin: 0 1em 0 calc(1em - 2px);
+    height: 3em;
+    padding-top: 3em;
+    font-weight:400;
+    box-sizing: border-box;
+    font-family: Acherus,sans-serif;
+    font-size: 1rem;
+    line-height:1.5;
+    text-align:left;
+}
+
+.vt-logo-image{
+    max-height:3em;
+    min-height:1em;
+}
+
+.vt-logo-text{
+    font-size:clamp(1.1rem, 4.2vw, 1.6rem);
+    max-width:300px;
+    min-width:205px;
+    font-size: .4;
+    display: block;
+    position: relative;
+    color: #861f41;
+    font-family:Arial, Helvetica, sans-serif;
+    font-stretch:ultra-condensed;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height:1;
+}
+
+.title{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size:50px;
+    color: #861f41;
+    position:relative;
+    display: block;
+    max-width:600px;
+    float:right;
+    right: 15px;
+}
+
+
+.navigation {
+    width:100%;
+    font-weight:400;
+    line-height:11px;
+    margin:0 auto;
+    overflow:hidden;
+    background-color:#861f41;
+}
+
+.navlist{
+    word-spacing: 10em;
+}
+
+.navtab{
+    width:100%;
+    min-width: 100px;
+    max-width: 300px;
+    -webkit-box-align: center;
+    color:#fff;
+    text-decoration:none;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:1em;
+    font-weight: 600;
+}
