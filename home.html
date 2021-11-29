@@ -7,9 +7,7 @@
     </style>
 </head>
 
-<script lang="JavaScript" src="test.js">
-
-</script>
+<script type="text/javascript" src="./main.js"></script>
 
 <body>
     <!-- start of vt logo -->
@@ -36,10 +34,23 @@
             <a class="navtab" href="./map.html">MAP</a>
             <a class="navtab" href="./spreadsheet.html">SPREADSHEET</a>
             <a class="navtab" href="./app.html">APP</a>
+            <script>
+                login_check()
+                document.write(login_tab(loginCheck))
+            </script>
         </ul>
     </div>
     <!-- end of navigation block -->
-    <a>this is home page</a>
+    <div class="background">
+        <div class="article">
+            <h1 class="home_title">
+                About Us
+            </h1>
+            <p class="home_content">
+                Wildlife animal disease tracker app is an application with the purpose of gathering, archiving, and freely sharing information about wildlife diseases around the world to power new data-driven approaches to science, conservation, and education.
+            </p>
+        </div>
+    </div>
 </body>
 
 </html>

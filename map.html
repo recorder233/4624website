@@ -2,44 +2,76 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <style type="text/css">
         @import url("website.css");
     </style>
 </head>
 
-<script lang="JavaScript" src="test.js">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
 
-</script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+
+<!-- Initialize Firebase -->
+<!-- <script src="/__/firebase/init.js"></script> -->
+<script type="text/javascript" src="./main.js"></script>
 
 <body>
-    <!-- start of vt logo -->
-    <div>
-        <div id="vt_logo" class="vt-logo">
-            <a href="https://fishwild.vt.edu" class="vt-logo-link">
-                <img alt="" class="vt-logo-image" src="https://www.assets.cms.vt.edu/images/maroonVTonWhite.svg"
-                    focusable="false" aria-hidden="true">
+    <div class="map-container">
+        <div class="logo-container">
+            <!-- start of vt logo -->
+            <div>
+                <div id="vt_logo" class="vt-logo">
+                    <a href="https://fishwild.vt.edu" class="vt-logo-link">
+                        <img alt="" class="vt-logo-image" src="https://www.assets.cms.vt.edu/images/maroonVTonWhite.svg"
+                            focusable="false" aria-hidden="true">
 
-                <span class="vt-logo-divider" focusable="false" aria-hidden="true"></span>
-                <span class="vt-logo-text">Fish and Wildlife Conservation</span>
-            </a>
+                        <span class="vt-logo-divider" focusable="false" aria-hidden="true"></span>
+                        <span class="vt-logo-text">Fish and Wildlife Conservation</span>
+                    </a>
 
 
+                </div>
+                <a class="title">Wild Life Tracker</a>
+            </div>
+            <!-- end of vt logo -->
+
+            <!-- start of navigation block -->
+            <div class="navigation">
+                <ul class="navlist">
+                    <a class="navtab" href="./home.html">HOME</a>
+                    <a class="navtab" href="./map.html">MAP</a>
+                    <a class="navtab" href="./spreadsheet.html">SPREADSHEET</a>
+                    <a class="navtab" href="./app.html">APP</a>
+                    <script>
+                        login_check()
+                        document.write(login_tab(loginCheck))
+                    </script>
+
+                </ul>
+
+            </div>
         </div>
-        <a class="title">Wild Life Tracker</a>
-    </div>
-    <!-- end of vt logo -->
+        <!-- end of navigation block -->
 
-    <!-- start of navigation block -->
-    <div class="navigation">
-        <ul class="navlist">
-            <a class="navtab" href="./home.html">HOME</a>
-            <a class="navtab" href="./map.html">MAP</a>
-            <a class="navtab" href="./spreadsheet.html">SPREADSHEET</a>
-            <a class="navtab" href="./app.html">APP</a>
-        </ul>
+
+        <!-- start of the map -->
+
+        <div id="map">
+            <script>
+                login_check()
+                showMap(loginCheck)
+            </script>
+        </div>
     </div>
-    <!-- end of navigation block -->
-    <a>this is map page</a>
 </body>
 
 </html>

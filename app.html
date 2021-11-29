@@ -7,39 +7,50 @@
     </style>
 </head>
 
-<script lang="JavaScript" src="test.js">
-
-</script>
+<script type="text/javascript" src="./main.js"></script>
 
 <body>
     <!-- start of vt logo -->
     <div>
-        <div id="vt_logo" class="vt-logo">
-            <a href="https://fishwild.vt.edu" class="vt-logo-link">
-                <img alt="" class="vt-logo-image" src="https://www.assets.cms.vt.edu/images/maroonVTonWhite.svg"
-                    focusable="false" aria-hidden="true">
+        <div>
+            <div id="vt_logo" class="vt-logo">
+                <a href="https://fishwild.vt.edu" class="vt-logo-link">
+                    <img alt="" class="vt-logo-image" src="https://www.assets.cms.vt.edu/images/maroonVTonWhite.svg"
+                        focusable="false" aria-hidden="true">
 
-                <span class="vt-logo-divider" focusable="false" aria-hidden="true"></span>
-                <span class="vt-logo-text">Fish and Wildlife Conservation</span>
-            </a>
+                    <span class="vt-logo-divider" focusable="false" aria-hidden="true"></span>
+                    <span class="vt-logo-text">Fish and Wildlife Conservation</span>
+                </a>
 
 
+            </div>
+            <a class="title">Wild Life Tracker</a>
         </div>
-        <a class="title">Wild Life Tracker</a>
-    </div>
-    <!-- end of vt logo -->
+        <!-- end of vt logo -->
 
-    <!-- start of navigation block -->
-    <div class="navigation">
-        <ul class="navlist">
-            <a class="navtab" href="./home.html">HOME</a>
-            <a class="navtab" href="./map.html">MAP</a>
-            <a class="navtab" href="./spreadsheet.html">SPREADSHEET</a>
-            <a class="navtab" href="./app.html">APP</a>
-        </ul>
+        <!-- start of navigation block -->
+        <div class="navigation">
+            <ul class="navlist">
+                <a class="navtab" href="./home.html">HOME</a>
+                <a class="navtab" href="./map.html">MAP</a>
+                <a class="navtab" href="./spreadsheet.html">SPREADSHEET</a>
+                <a class="navtab" href="./app.html">APP</a>
+                <script>
+                    login_check()
+                    document.write(login_tab(loginCheck))
+                </script>
+            </ul>
+        </div>
     </div>
     <!-- end of navigation block -->
-    <a>this is app page</a>
+    <div class="background">
+        <div class="article">
+            <h1>
+                Getting Started
+            </h1>
+            <p>This page is not yet finished</p>
+        </div>
+    </div>
 </body>
 
 </html>
