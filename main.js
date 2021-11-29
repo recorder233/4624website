@@ -133,30 +133,36 @@ async function getData() {
         .catch((err) => {
             console.log('error getting documents', err)
         })
-    setTimeout(() => {
-        //set timeout to allow the function have enough time to get the data from firestore and it save in local
-        let i = 0
-        listSet.totalLength = listSet.recordList.length
-        for (i; i < listSet.totalLength; i++) {
-            listSet.idList.push(listSet.recordList[i]['UUID'])
-            listSet.choiceList.push(listSet.recordList[i]['Choice'])
-            listSet.dateList.push(listSet.recordList[i]['Date'])
-            listSet.geoList.push(listSet.recordList[i]['Geo Info'])
-            listSet.graphList.push(listSet.recordList[i]['ImageURL'])
-            listSet.contactInformationList.push(listSet.recordList[i]['Contact Information'])
-            listSet.recordList[i]['Longtitude, Latitude'] = listSet.recordList[i]['Geo Info']
-            listSet.additionalInfoList.push(listSet.recordList[i]['Additional Information'])
-            delete listSet.recordList[i]['Geo Info']
-            listSet.recordList[i]['Additional Information'] = listSet.recordList[i]['Additional Information'].replace(/,/g, "_")
-        }
+    await new Promise((resolve, reject)=>{
+        setTimeout(() => {
+            //set timeout to allow the function have enough time to get the data from firestore and it save in local
+            let i = 0
+            listSet.totalLength = listSet.recordList.length
+            for (i; i < listSet.totalLength; i++) {
+                listSet.idList.push(listSet.recordList[i]['UUID'])
+                listSet.choiceList.push(listSet.recordList[i]['Choice'])
+                listSet.dateList.push(listSet.recordList[i]['Date'])
+                listSet.geoList.push(listSet.recordList[i]['Geo Info'])
+                listSet.graphList.push(listSet.recordList[i]['ImageURL'])
+                listSet.contactInformationList.push(listSet.recordList[i]['Contact Information'])
+                listSet.recordList[i]['Longtitude, Latitude'] = listSet.recordList[i]['Geo Info']
+                listSet.additionalInfoList.push(listSet.recordList[i]['Additional Information'])
+                delete listSet.recordList[i]['Geo Info']
+                listSet.recordList[i]['Additional Information'] = listSet.recordList[i]['Additional Information'].replace(/,/g, "_")
+            }
+            resolve()
+    
+        }, 500)
 
-    }, 500)
+    })
+    
 
 }
 
 
 async function buildTable(login){
-    setTimeout(()=>{var table = document.getElementById("table")
+    await getData()
+    var table = document.getElementById("table")
     var tbody = document.createElement("tbody")
     var firstLine = document.createElement("tr")
     var firstCol = document.createElement("td")
@@ -210,7 +216,7 @@ async function buildTable(login){
             removeSlot.appendChild(removebut)
             line.appendChild(removeSlot)
         }
-    }}, 1500)
+    }
 
     
 }
