@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <style type="text/css">
         @import url("website.css");
     </style>
@@ -46,9 +47,45 @@
     <div class="background">
         <div class="article">
             <h1>
-                Getting Started
+                How to download our app
             </h1>
-            <p>This page is not yet finished</p>
+            <p>
+                Our app is not published on the App store, so you need to install it differently than usual, you will need a Mac in order to install our app.
+                <br><br>
+                First, you need to download <b>Xcode</b>, you can find it in App Store, it is a mandatory software for IOS software developing
+            </p>
+            <img class="illus" src="./pictures/xcode.png" width=60 height=60 alt="image of Xcode">
+            <p>
+                While it is downloading, go to <b>https://github.com/ZhangPieChuan/WildlifeTrackerApp</b> click on the green <b>code</b> button then click <b>download ZIP</b>. When finished, unzip the file in desktop
+            </p>
+            <img class="illus" src="./pictures/clone.png">
+            <p>
+                Next, we need to configure the project's dependence, open <b>Terminal</b> in <b>LaunchPad > Other</b>, inside it, write:
+                <br>&emsp;&emsp; <b>sudo gem install cocoapods</b>
+            </p>
+            <img class="illus" src="./pictures/cocoapods.png">
+            <p>
+                when finished type:
+                <br>&emsp;&emsp; <b>cd Desktop/WildlifeTrackerApp-main</b>
+                <br>&emsp;&emsp; <b>pod init</b>
+                <br>&emsp;&emsp; <b>pod update</b>
+                <br>it may take some time to run
+            </p>
+            <img class="illus" src="./pictures/podinit.png">
+            <p>
+                When the previous step is finished, open Xcode and choose <b>Open a project or file</b>, then choose the folder you just unziped.
+            </p>
+            <img class="illus" src="./pictures/open.png">
+
+            <p>
+                Connect your iphone to your mac then on the top of the Xcode window, click on the tab <b>right to the stop button</b>, then choose your iphone from the list then click <b>play button</b>
+            </p>
+            <img class="illus" src="./pictures/selectPhone.png" width=628 height=84>
+            <img class="illus" src="./pictures/phonelist.png">
+            <p>
+                when finished, you can see the app on your phone and start using
+            </p>
+            <img class="illus" src="./pictures/app.png" width=500 height=1082>
         </div>
     </div>
 </body>
