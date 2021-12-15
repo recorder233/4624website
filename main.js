@@ -210,7 +210,6 @@ async function buildTable(login){
     firstLine.appendChild(firstCol)
     firstLine.appendChild(secondCol)
     firstLine.appendChild(thirdCol)
-    console.log(listSet)
     var lines =[]
     for (var i = 0; i < listSet.totalLength; i++){
         var line = document.createElement("tr")
