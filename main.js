@@ -91,8 +91,6 @@ function logout() {
  * This function is to check the encrypeted login information stored in cookie is correct
  */
 function login_check() {
-    loginCheck = true;
-    return;
     var cookie = document.cookie
     cookie = cookie.split("; ")
     try {
