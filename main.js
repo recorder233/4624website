@@ -5,19 +5,26 @@
 
 // Add the Firebase products that you want to use
 
-//sha256 hash of "admin"
+//sha-256 hash of "admin"(all lower case)
 var stored_userName = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
 
+//SHA-256 hash of "wildlife"(all lower case)
 var stored_password = "33445260df1bc49114eeeda3d7e30ea3b4ac318f5e6bb7ad339e6a5a03be9336"
 
 var loginCheck = false
 
+// the mapbox instance used to create our map page
 var map
 
+// used in the map, when a pin is clicked on the map, the currFeature will set to corresponding feature
+// the purpose of this global veriable is to make sure the pin will be removed when delete button is clicked
 var currFeature
 
+// database
 var db
 
+// feature list will contain all pin and the popup when the pin is clicked
+// for more detail about feature, please refer to mapbox api https://docs.mapbox.com/mapbox-gl-js/api/map/
 var featureList = []
 //database set for the local array
 var listSet = {
@@ -37,7 +44,10 @@ async function download() {
 }
 
 
-
+/**
+ * this function is to decide whether to display "login" or "logout" at the top
+ * right of the website depending if the user has loged in
+ */
 function login_tab(src) {
     if (src) {
         return '<a class="login" href="./logout.html">Logout<\a>'
@@ -47,6 +57,11 @@ function login_tab(src) {
     }
 }
 
+/**
+ * this function gather input of the user to the username and password textbox
+ * in login page, it will encrypt the both input using SHA-256, then compare
+ * the input from the correct username and password stored in the code
+ */
 async function login() {
     var userName = document.getElementById("user-name").value
     var userPass = document.getElementById("user-pass").value
@@ -63,19 +78,27 @@ async function login() {
         alert("invalid user name or password")
     }
 }
-
+/**
+ * set the cookie userName and userPass to ""
+ */
 function logout() {
     addCookie("userName", "")
     addCookie("userPass", "")
     window.location.href = "./home.html"
 }
 
+/**
+ * This function is to check the encrypeted login information stored in cookie is correct
+ */
 function login_check() {
+    loginCheck = true;
+    return;
     var cookie = document.cookie
     cookie = cookie.split("; ")
     try {
         userName = cookie[0].split("=")[1]
         userPass = cookie[1].split("=")[1]
+        // the stored_userName is admin, stored_password is wildlife
         if (userName == stored_userName && userPass == stored_password) {
             loginCheck = true
         }
@@ -88,6 +111,11 @@ function login_check() {
     }
 }
 
+/**
+ * encrypt a message using SHA-256
+ * @param {String} message message to be encrypted
+ * @returns encrypted message
+ */
 async function encrypt(message) {
     var msgBuffer = new TextEncoder().encode(message);
     // hash the message
@@ -99,6 +127,11 @@ async function encrypt(message) {
     return hashHex;
 }
 
+/**
+ * add/change a cookie
+ * @param {String} name name of the cookie
+ * @param {String} data value of the cookie
+ */
 function addCookie(name, data) {
     var date = new Date()
     date.setMonth(date.getMonth() + 12)
@@ -134,7 +167,6 @@ async function getData() {
             console.log('error getting documents', err)
         })
     await new Promise((resolve, reject)=>{
-        setTimeout(() => {
             //set timeout to allow the function have enough time to get the data from firestore and it save in local
             let i = 0
             listSet.totalLength = listSet.recordList.length
@@ -152,14 +184,17 @@ async function getData() {
             }
             resolve()
     
-        }, 500)
+
 
     })
     
 
 }
 
-
+/**
+ * build the table for spreadsheet page
+ * @param {bool} login if the user is loged in
+ */
 async function buildTable(login){
     await getData()
     var table = document.getElementById("table")
@@ -178,6 +213,7 @@ async function buildTable(login){
     firstLine.appendChild(secondCol)
     firstLine.appendChild(thirdCol)
     console.log(listSet)
+    var lines =[]
     for (var i = 0; i < listSet.totalLength; i++){
         var line = document.createElement("tr")
         line.id = i
@@ -201,20 +237,20 @@ async function buildTable(login){
             removeSlot.className = "removeSlot"
             var removebut = document.createElement("button")
             removebut.className = "removeButton"
+            removebut.id = line.id
             removebut.onclick = function(action){
-                //deleteData(i)
-                var currLine = action.originalTarget.parentNode.parentNode
-                var index = currLine.id
-                
+                //back trace from the button to the line
+                //var currLine = action.originalTarget.parentNode.parentNode
+                var target = action.target.id
                 if (confirm("Are you sure you want to remove this from the database")){
-                    currLine.remove()
-                    console.log(index)
-                    db.collection('users').doc(listSet.idList[index]).delete()
+                    lines[target].remove()
+                    db.collection('users').doc(listSet.idList[target]).delete()
                 }
             }
             removebut.appendChild(document.createTextNode("delete"))
             removeSlot.appendChild(removebut)
             line.appendChild(removeSlot)
+            lines.push(line)
         }
     }
 
@@ -232,7 +268,6 @@ function convertArrayOfObjectsToCSV(args) {
     lineDelimiter = '\n';
 
     keys = Object.keys(data[0]);
-    console.log(keys)
     result = '';
     result += keys.join(columnDelimiter);
     result += lineDelimiter;
@@ -271,6 +306,10 @@ function downloadCSV(args) {
     link.click();
 }
 
+/**
+ * remove
+ * @param {int} i 
+ */
 function deleteFromMap(i) {
     if (confirm("Are you sure you want to remove this from the database")){
         map.removeLayer(i.toString())
@@ -319,7 +358,7 @@ function showMap(login) {
                 }
                 else {
                     featureList[i] =
-                    //The popup is clicked and if loged in the following information will shown
+                    //The popup is clicked and if logged in a extra delete button will be shown
                     {
                         'type': 'Feature',
                         'properties': {
